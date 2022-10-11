@@ -1,16 +1,19 @@
 import React from "react"
 
-import {IUser} from '../models'
+import {IMoment, IUser} from '../models'
 
 interface PostProps {
     user: IUser
+    moment: IMoment
 }
 
 function Post(props?: PostProps) {
     return (
         <div className="w-50 h-50 border border-primary container my-3 shadow p-3 bg-body rounded">
-            <div className="row d-inline border border-secondary rounded mx-3 px-1">
-                {props?.user.nickname}
+            <div className="row d-inline">
+                <span className="fw-bold border border-secondary rounded mx-3 px-1">{props?.moment.author}</span>
+                <br/>
+                <span className="ml-2 px-1"></span>{props?.moment.header}
             </div>
             <div className="row">
                 <div className="col-3"></div>
@@ -45,6 +48,12 @@ function Post(props?: PostProps) {
                         c0-39.876,32.441-72.318,72.318-72.318s72.319,32.442,72.319,72.318C442.975,417.558,410.533,450,370.656,450z"/>
 
                 </svg>
+            </div>
+            <div className="row">
+                <span className="fw-bold">1212 likes</span>
+            </div>
+            <div className="row d-inline">
+                <span className="fw-bold">{props?.moment.author}</span> {props?.moment.content}
             </div>
         </div>
     )

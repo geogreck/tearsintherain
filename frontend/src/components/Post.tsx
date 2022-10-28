@@ -9,7 +9,7 @@ interface PostProps {
 
 function Post(props?: PostProps) {
     return (
-        <div className="w-50 h-50 border border-primary container my-3 shadow p-3 bg-body rounded">
+        <div className="w-75 border border-primary container my-3 shadow p-3 bg-body rounded">
             <div className="row d-inline">
                 <span className="fw-bold border border-secondary rounded mx-3 px-1">{props?.moment.author}</span>
                 <br/>

@@ -6,6 +6,10 @@ import Post from './components/Post'
 import Profile from './components/Profile'
 import { users, moments, subbs } from './data/local'
 import SettingsModal from './components/SettingsModal'
+import Footer from './components/Footer'
+import Login from './components/Login'
+import Pagination from './components/Pagination'
+import Feed from './components/Feed'
 
 function App() {
     const [curPage, setPage] = useState(
@@ -23,14 +27,28 @@ function App() {
         setIsAddOpen(true)
     }
 
+    const [isLogged, setLogged] = useState(false)
+    function login() {
+        setLogged(true)
+        setPage('profile')
+    }
+
     return (
         <div className="h-100 items-center">
-            <Header page={curPage} openModal={openAddModal} />
-            {curPage === 'index' ? <><Post user={users[0]} moment={moments[0]} /><Post user={users[0]} moment={moments[0]} /> </>: ''}
-            {curPage === 'profile' ? <Profile user={users[0]} moments={moments} /> : ''}
-            {curPage === 'notifications' ? <EventComp sub_event={subbs[0]} like_event={undefined} /> : ''}
-
+            <Header page={curPage} openModal={openAddModal} isLogged = {isLogged}/>
+            <main>
+                {curPage === 'index' ? (
+                    <Feed />
+                ) : (
+                    ''
+                )}
+                {curPage === 'profile' && isLogged ? <Profile user={users[0]} moments={moments} /> : ''}
+                {curPage === 'notifications' ? <EventComp sub_event={subbs[0]} like_event={undefined} /> : ''}
+                {curPage === 'login' && !isLogged ? <Login loginFn={login}/> : ''}
+            </main>
             <AddMomentModal modalState={{ isOpen: isAddOpen, setIsOpen: setIsAddOpen }} />
+
+            <Footer />
         </div>
     )
 }

@@ -4,6 +4,7 @@ import '../scss/Header.scss'
 interface HeaderProps {
     page: string
     openModal: any
+    isLogged: boolean
 }
 
 function Header(props: HeaderProps) {
@@ -17,7 +18,7 @@ function Header(props: HeaderProps) {
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item"></li>
                 </ul>
-                <a className="nav-link mx-2" onClick={props.openModal} style={{cursor:'pointer'}}>
+                <a className="nav-link mx-2" onClick={props.openModal} style={{ cursor: 'pointer' }}>
                     <svg
                         width="35px"
                         height="35px"
@@ -59,35 +60,6 @@ function Header(props: HeaderProps) {
                         <path d="M5 2h14a3 3 0 0 1 3 3v17H2V5a3 3 0 0 1 3-3z" />
                     </svg>
                 </a>
-                <a className="nav-link mx-2" href="#profile">
-                    <svg
-                        width="35px"
-                        height="35px"
-                        viewBox="0 0 512 512"
-                        version="1.1"
-                        id="Layer_1"
-                        xmlns="http://www.w3.org/2000/svg"
-                        x="0px"
-                        y="0px"
-                        className="mx-2"
-                    >
-                        <g>
-                            <g>
-                                <path
-                                    d="M256,0c-84.83,0-153.6,85.965-153.6,192S171.17,384,256,384s153.6-85.965,153.6-192S340.83,0,256,0z M256,358.4
-			c-70.579,0-128-74.65-128-166.4S185.421,25.6,256,25.6S384,100.25,384,192S326.579,358.4,256,358.4z"
-                                />
-                            </g>
-                        </g>
-                        <path
-                            d="M367.812,361.762c-6.869,6.682-14.182,12.689-21.82,18.099c24.388,11.332,45.781,20.753,64.051,28.732
-			c67.797,29.585,76.356,35.439,76.356,52.207c0,11.597-11.418,25.6-25.6,25.6H51.2c-14.182,0-25.6-14.003-25.6-25.6
-			c0-16.768,8.559-22.622,76.348-52.207c18.278-7.979,39.671-17.399,64.051-28.732c-7.637-5.41-14.95-11.418-21.82-18.099
-			C37.598,410.539,0,417.075,0,460.8C0,486.4,22.921,512,51.2,512h409.6c28.279,0,51.2-25.6,51.2-51.2
-			C512,417.075,474.402,410.539,367.812,361.762z"
-                        />
-                    </svg>
-                </a>
                 <a href="#notifications">
                     <svg
                         version="1.1"
@@ -116,8 +88,55 @@ function Header(props: HeaderProps) {
                 {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item"></li>
         </ul> */}
+                {!props.isLogged ? (
+                    <a className="nav-link mx-2" href="#login">
+                        <svg
+                            width="35px"
+                            height="35px"
+                            viewBox="0 0 512 512"
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            x="0px"
+                            y="0px"
+                            className="mx-2"
+                        >
+                            <g>
+                                <g>
+                                    <path
+                                        d="M256,0c-84.83,0-153.6,85.965-153.6,192S171.17,384,256,384s153.6-85.965,153.6-192S340.83,0,256,0z M256,358.4
+			c-70.579,0-128-74.65-128-166.4S185.421,25.6,256,25.6S384,100.25,384,192S326.579,358.4,256,358.4z"
+                                    />
+                                </g>
+                            </g>
+                            <path
+                                d="M367.812,361.762c-6.869,6.682-14.182,12.689-21.82,18.099c24.388,11.332,45.781,20.753,64.051,28.732
+			c67.797,29.585,76.356,35.439,76.356,52.207c0,11.597-11.418,25.6-25.6,25.6H51.2c-14.182,0-25.6-14.003-25.6-25.6
+			c0-16.768,8.559-22.622,76.348-52.207c18.278-7.979,39.671-17.399,64.051-28.732c-7.637-5.41-14.95-11.418-21.82-18.099
+			C37.598,410.539,0,417.075,0,460.8C0,486.4,22.921,512,51.2,512h409.6c28.279,0,51.2-25.6,51.2-51.2
+			C512,417.075,474.402,410.539,367.812,361.762z"
+                            />
+                        </svg>
+                    </a>
+                ) : (
+                    <div className="flex-shrink-0 me-2">
+                        <a
+                            href="#profile"
+                            className="d-block link-dark text-decoration-none"
+                            aria-expanded="false"
+                        >
+                            <img
+                                src="https://github.com/mdo.png"
+                                alt="mdo"
+                                width="32"
+                                height="32"
+                                className="rounded-circle"
+                            />
+                        </a>
+                    </div>
+                )}
                 <form className="d-flex">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <input className="form-control mx-2" type="search" placeholder="Search" aria-label="Search" />
                     <button className="btn btn-outline-primary" type="submit">
                         Search
                     </button>

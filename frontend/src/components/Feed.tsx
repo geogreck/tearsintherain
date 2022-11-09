@@ -25,9 +25,9 @@ function Feed() {
                     <p className='h2'>Популярные теги</p>
                     <ul className="list-group h3">
                         <li className="list-group-item">Тупики</li>
-                        <li className="list-group-item">Гнатэнко</li>
+                        <li className="list-group-item">Реакт</li>
                         <li className="list-group-item">Вячеслав Локшин</li>
-                        <li className="list-group-item">Алексей Халайджи</li>
+                        <li className="list-group-item">Артас</li>
                         <li className="list-group-item">Программист</li>
                     </ul>
                 </div>

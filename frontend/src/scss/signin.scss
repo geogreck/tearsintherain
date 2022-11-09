@@ -1,22 +1,67 @@
 .form-signin {
-  max-width: 330px;
-  padding: 15px;
+    max-width: 330px;
+    padding: 0 15px;
+    margin: 0 auto;
+    position: relative;
+
+    .login .form-control {
+        padding-right: 40px;
+    }
+
+    .form-floating {
+        .password-control {
+            position: absolute;
+            top: 18px;
+            right: 10px;
+
+            svg {
+                color: rgb(36, 36, 36);
+            }
+        }
+
+        &:focus-within {
+            z-index: 2;
+        }
+    }
+
+    input[type='email'] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    input[type='password']:not(.password-2) {
+        margin-bottom: -1px;
+        border-radius: 0;
+    }
+
+    .password-2 {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}
+.register {
+    width: calc(100% - 30px);
+    max-width: 300px;
+    top: 0px;
+    left: 15px;
+    position: absolute;
+
+    input[type='text'] {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    input[type='email'] {
+        margin-top: -1px;
+        border-radius: 0;
+    }
 }
 
-.form-signin .form-floating:focus-within {
-  z-index: 2;
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
-
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-

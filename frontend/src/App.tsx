@@ -8,8 +8,8 @@ import { users, moments, subbs } from './data/local'
 import SettingsModal from './components/SettingsModal'
 import Footer from './components/Footer'
 import Login from './components/Login'
-import Pagination from './components/Pagination'
 import Feed from './components/Feed'
+import Register from './components/Register'
 
 function App() {
     const [curPage, setPage] = useState(
@@ -45,6 +45,7 @@ function App() {
                 {curPage === 'profile' && isLogged ? <Profile user={users[0]} moments={moments} /> : ''}
                 {curPage === 'notifications' ? <EventComp sub_event={subbs[0]} like_event={undefined} /> : ''}
                 {curPage === 'login' && !isLogged ? <Login loginFn={login}/> : ''}
+                {curPage === 'register' && !isLogged ? <Register registerFn={login} /> : ''}
             </main>
             <AddMomentModal modalState={{ isOpen: isAddOpen, setIsOpen: setIsAddOpen }} />
 

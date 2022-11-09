@@ -45,19 +45,19 @@ function AddMomentModal(props: ModalProps) {
                     <form>
                         <div className="form-group">
                             <h2>Выберите фотографию</h2>
-                            <input type="file" className="form-control" alt="" />
+                            <input type="file" className="form-control" alt="" required />
                             <div className="d-flex justify-content-center">
-                                <img src="logo512.png" height="200px" alt=""/>
+                                <img src="logo512.png" height="200px" alt="" />
                             </div>
                         </div>
                         <div className="form-group">
-                            <input type="text" className="form-control my-3" placeholder="Выберите теги" />
-                            <input type="text" className="form-control my-3" placeholder="Заголовок" />
+                            <input type="text" className="form-control my-3" placeholder="Выберите теги" required />
+                            <input type="text" className="form-control my-3" placeholder="Заголовок" required />
                             <input type="text" className="form-control my-3" placeholder="Описание" />
                         </div>
-                        <div className="d-flex justify-content-center">
-                            {/* <input type="submit" className='btn btn-primary' value="Загрузить" /> */}
-                            <button className="btn btn-primary" onClick={closeModal}>
+                        <div className="">
+                            <input type="submit" className='btn btn-primary d-block mx-auto my-2' value="Загрузить" />
+                            <button className="btn btn-primary d-block mx-auto" onClick={closeModal}>
                                 {' '}
                                 Закрыть окно{' '}
                             </button>

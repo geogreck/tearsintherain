@@ -1,19 +1,17 @@
 import react from 'react'
+import { Form, Link } from 'react-router-dom'
 import '../scss/signin.scss'
 
-interface IRegisterProps {
-    registerFn: any
-}
 
-function Register(props: IRegisterProps) {
+function Register() {
     function registerRequest() {
-        props.registerFn()
+        
     }
 
     return (
-        <div className="w-50 h-50 border border-primary container my-3 shadow p-5 bg-body rounded text-center">
+        <div className="w-75 h-50 border border-primary container my-3 shadow p-5 bg-body rounded text-center">
             <main className="form-signin w-100 m-auto">
-                <form>
+                <Form method="post" action='/login' encType='aplication/json'>
                     <img className="mb-4" src="logo512.png" alt="" width="72" height="57" />
                     <h1 className="h3 fw-normal">Please sign up</h1>
                     <span className="text-danger my-3">Sorry, email already taken!</span>
@@ -78,11 +76,11 @@ function Register(props: IRegisterProps) {
                         className="btn btn-primary fs-4 d-block mx-auto my-2 w-auto"
                         value="Зарегистрироваться"
                     />
-                    <a href="#login" className="btn btn-primary fs-5 d-block mx-auto my-2 w-50">
+                    <Link to="/login" className="btn btn-primary fs-5 d-block mx-auto my-2 w-50">
                         Войти
-                    </a>
+                    </Link>
                     <p className="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
-                </form>
+                </Form>
             </main>
         </div>
     )

@@ -69,7 +69,7 @@ function Profile(props: ProfileProps) {
                 <div className="row d-inline">
                     <span className="fw-bold">Рейтинг:</span>
                     {props?.user.rating}
-                    <span className="fw-bold">Дата регистрации</span> {props?.user.reg_day.toDateString()}
+                    <span className="fw-bold">Дата регистрации</span> {props?.user.registration_date.toDateString()}
                 </div>
             </div>
             {/*  <div className=" border border-primary container my-1 shadow p-1 bg-body rounded"> */}

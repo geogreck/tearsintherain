@@ -44,8 +44,8 @@ function App() {
                 )}
                 {curPage === 'profile' && isLogged ? <Profile user={users[0]} moments={moments} /> : ''}
                 {curPage === 'notifications' ? <EventComp sub_event={subbs[0]} like_event={undefined} /> : ''}
-                {curPage === 'login' && !isLogged ? <Login loginFn={login}/> : ''}
-                {curPage === 'register' && !isLogged ? <Register registerFn={login} /> : ''}
+                {curPage === 'login' && !isLogged ? <Login /> : ''}
+                {curPage === 'register' && !isLogged ? <Register /> : ''}
             </main>
             <AddMomentModal modalState={{ isOpen: isAddOpen, setIsOpen: setIsAddOpen }} />
 

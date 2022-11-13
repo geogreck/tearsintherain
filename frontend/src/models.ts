@@ -2,7 +2,7 @@ export interface IUser {
     email: string
     nickname: string
     profile_pic: string
-    reg_day: Date
+    registration_date: Date
     rating: number
 }
 

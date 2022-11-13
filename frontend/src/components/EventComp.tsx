@@ -2,8 +2,8 @@ import React from 'react'
 import { ILike, ISub } from '../models'
 
 interface EventProps {
-    like_event: ILike | undefined
-    sub_event: ISub | undefined
+    like_event?: ILike
+    sub_event?: ISub
 }
 
 function EventComp(props: EventProps) {

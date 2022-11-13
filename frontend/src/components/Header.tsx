@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import '../scss/Header.scss'
+import logo from '../logo.png'
 
 interface HeaderProps {
     page: string
@@ -8,12 +10,26 @@ interface HeaderProps {
 }
 
 function Header(props: HeaderProps) {
+    let [isLogged, login] = useState(false)
+    let [userId, setUserId] = useState('')
+
+    const interval = setInterval(() => {
+        let res = window.sessionStorage.getItem('logged')
+        login(JSON.parse(res!))
+        res = window.sessionStorage.getItem('user_id')
+        setUserId(JSON.parse(res!))
+        // дальнейшие действия с myitem
+    }, 1000)
+
     return (
         <nav className=" sticky-top navbar navbar-expand-lg navbar-light bg-my-light">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#index">
-                    <img src="logo.png" height="50px" alt="" className="mx-3" />
-                </a>
+                <NavLink
+                    className={({ isActive }) => (isActive ? 'navbar-brand text-primary ' : 'navbar-brand')}
+                    to="/"
+                >
+                    <img src={logo} height="50px" alt="" className="mx-3" />
+                </NavLink>
 
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item"></li>
@@ -41,7 +57,11 @@ function Header(props: HeaderProps) {
                         />
                     </svg>
                 </a>
-                <a className="nav-link active mx-2" aria-current="page" href="#index">
+                <NavLink
+                    className={({ isActive }) => (isActive ? 'text-primary' : '') + 'nav-link active mx-2'}
+                    aria-current="page"
+                    to="/"
+                >
                     <svg
                         width="35px"
                         height="35px"
@@ -59,8 +79,8 @@ function Header(props: HeaderProps) {
                         <path d="M22 13H2" /> <path d="M18 6h-5m5 3h-5" />
                         <path d="M5 2h14a3 3 0 0 1 3 3v17H2V5a3 3 0 0 1 3-3z" />
                     </svg>
-                </a>
-                <a href="#notifications">
+                </NavLink>
+                <NavLink to="/notifications">
                     <svg
                         version="1.1"
                         id="Capa_1"
@@ -84,12 +104,9 @@ function Header(props: HeaderProps) {
                             />
                         </g>
                     </svg>
-                </a>
-                {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-item"></li>
-        </ul> */}
-                {!props.isLogged ? (
-                    <a className="nav-link mx-2" href="#login">
+                </NavLink>
+                {!isLogged ? (
+                    <Link className="nav-link mx-2" to="/login">
                         <svg
                             width="35px"
                             height="35px"
@@ -117,14 +134,10 @@ function Header(props: HeaderProps) {
 			C512,417.075,474.402,410.539,367.812,361.762z"
                             />
                         </svg>
-                    </a>
+                    </Link>
                 ) : (
                     <div className="flex-shrink-0 me-2">
-                        <a
-                            href="#profile"
-                            className="d-block link-dark text-decoration-none"
-                            aria-expanded="false"
-                        >
+                        <Link to={`/profile/${userId}`} className="d-block link-dark text-decoration-none" aria-expanded="false">
                             <img
                                 src="https://github.com/mdo.png"
                                 alt="mdo"
@@ -132,7 +145,7 @@ function Header(props: HeaderProps) {
                                 height="32"
                                 className="rounded-circle"
                             />
-                        </a>
+                        </Link>
                     </div>
                 )}
                 <form className="d-flex">

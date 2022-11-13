@@ -9,7 +9,7 @@ function PostsGrid() {
                 <img src="logo512.png" className="col-3 border border-secondary rounded m-2 shadow"></img>
             </div>
             <div className="d-flex justify-content-center">
-                <img src="logo512.png" className="col-3 border border-secondary rounded m-2 shadow"></img>
+                <img src="public/logo512.png" className="col-3 border border-secondary rounded m-2 shadow"></img>
                 <img src="logo512.png" className="col-3 border border-secondary rounded m-2 shadow"></img>
                 <img src="logo512.png" className="col-3 border border-secondary rounded m-2 shadow"></img>
             </div>

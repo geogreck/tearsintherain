@@ -5,7 +5,7 @@ export const users: IUser[] =  [
         email: "ya@ya.ru",
         nickname: 'geogreck',
         profile_pic:'logo.png',
-        reg_day: new Date(Date.now()),
+        registration_date: new Date(Date.now()),
         rating: 3.43
     }
 ]

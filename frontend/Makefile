@@ -20,7 +20,8 @@ build-docker: Dockerfile
 	touch $@
 
 host-static: build
-	docker run -it \
+	docker run -it --rm \
+		--name nginx_static  \
 		-v $(PWD)/build/:/usr/share/nginx/html:ro \
 		-p 8000:80 \
 	  nginx

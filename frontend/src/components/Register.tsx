@@ -11,13 +11,14 @@ function Register() {
     return (
         <div className="w-75 h-50 border border-primary container my-3 shadow p-5 bg-body rounded text-center">
             <main className="form-signin w-100 m-auto">
-                <Form method="post" action='/login' encType='aplication/json'>
+                <Form method="post" action='/register' encType='aplication/json'>
                     <img className="mb-4" src="logo512.png" alt="" width="72" height="57" />
                     <h1 className="h3 fw-normal">Please sign up</h1>
                     <span className="text-danger my-3">Sorry, email already taken!</span>
                     <div className="form-floating">
                         <input
                             type="text"
+                            name="nickname"
                             className="form-control"
                             id="nickname"
                             placeholder="nickname"
@@ -32,6 +33,7 @@ function Register() {
                         <input
                             type="email"
                             className="form-control"
+                            name="email"
                             id="email_rg"
                             placeholder="name@example.com"
                             required
@@ -45,6 +47,7 @@ function Register() {
                         <input
                             type="password"
                             className="form-control"
+                            name="Password"
                             id="rgPassword"
                             placeholder="Password"
                             required
@@ -59,6 +62,7 @@ function Register() {
                             type="password"
                             className="password-2 form-control"
                             id="confirmPassword"
+                            name="confirmPassword"
                             placeholder="Password"
                             required
                             maxLength={255}

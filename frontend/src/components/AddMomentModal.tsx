@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal'
+import { Form } from 'react-router-dom'
 import '../scss/modal.scss'
 
 Modal.setAppElement('#root')
@@ -42,18 +43,18 @@ function AddMomentModal(props: ModalProps) {
                 closeTimeoutMS={500}
             >
                 <>
-                    <form>
+                    <Form method="post" action="/">
                         <div className="form-group">
                             <h2>Выберите фотографию</h2>
-                            <input type="file" className="form-control" alt="" required />
+                            <input name="file" type="file" className="form-control" alt="" required />
                             <div className="d-flex justify-content-center">
                                 <img src="logo512.png" height="200px" alt="" />
                             </div>
                         </div>
                         <div className="form-group">
-                            <input type="text" className="form-control my-3" placeholder="Выберите теги" required />
-                            <input type="text" className="form-control my-3" placeholder="Заголовок" required />
-                            <input type="text" className="form-control my-3" placeholder="Описание" />
+                            <input name="tags"type="text" className="form-control my-3" placeholder="Выберите теги" required />
+                            <input name="title"type="text" className="form-control my-3" placeholder="Заголовок" required />
+                            <input name="description"type="text" className="form-control my-3" placeholder="Описание" />
                         </div>
                         <div className="">
                             <input type="submit" className='btn btn-primary d-block mx-auto my-2' value="Загрузить" />
@@ -62,7 +63,7 @@ function AddMomentModal(props: ModalProps) {
                                 Закрыть окно{' '}
                             </button>
                         </div>
-                    </form>
+                    </Form>
                 </>
             </Modal>
         </>

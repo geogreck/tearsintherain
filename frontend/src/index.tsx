@@ -12,7 +12,7 @@ import Moment, { loader as momentLoader } from './routes/moment'
 import FeedRoute from './routes/feed'
 import ProfileRoute, { loader as profileLoader } from './routes/profile'
 import LoginRoute, { action as loginAction } from './routes/login'
-import RegisterRoute from './routes/register'
+import RegisterRoute, {action as registerAction} from './routes/register'
 import NotificationsRoute from './routes/notifications'
 
 const router = createBrowserRouter([
@@ -42,6 +42,7 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <RegisterRoute />,
+                action: registerAction,
             },
             {
                 path: '/login',

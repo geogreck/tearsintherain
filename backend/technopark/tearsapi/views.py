@@ -12,7 +12,7 @@ class MomentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Moment
         fields = ['id', 'title', 'description',
-                  'author', 'created_on', 'image_src']
+                  'author', 'created_on', 'image_src', 'raiting']
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -27,9 +27,11 @@ class MomentCRUD(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MomentSerializer
 
 
+
 class MomentsList(generics.ListCreateAPIView):
     queryset = Moment.objects.all()
     serializer_class = MomentSerializer
+    pagination_class = StandardResultsSetPagination
 
 
 class UserMomentsList(generics.ListAPIView):
@@ -49,6 +51,13 @@ class NewMomentsList(generics.ListAPIView):
 
     def get_queryset(self):
         return Moment.objects.new_moments()
+
+class TopMomentsList(generics.ListAPIView):
+    serializer_class = MomentSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        return Moment.objects.top_moments()
 
 
 class UserCRUD(generics.RetrieveUpdateDestroyAPIView):

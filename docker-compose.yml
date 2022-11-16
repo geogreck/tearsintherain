@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    environment:
+        POSTGRES_DB: "slavadb"
+        POSTGRES_USER: "slava"
+        POSTGRES_PASSWORD: "slavapswd"
+    ports:
+      - "5432:5432"
+    networks:
+    - some-net
+  backend:
+    build: backend/
+    container_name: backend
+    restart: always
+    tty: true
+    command: "python3 technopark/manage.py runserver 0.0.0.0:8080"
+    ports:
+      - 8080:8080
+    networks:
+    - some-net
+networks:
+  some-net:
+    driver: bridge

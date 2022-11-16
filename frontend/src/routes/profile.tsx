@@ -24,11 +24,13 @@ export default function ProfileRoute() {
     const user = useLoaderData() as IUser
     user.registration_date = new Date(user.registration_date)
     const user_moments = [{
-        header: "Moscow, Russia",
-        content: "Мой первый пост",
-        author: "geogreck",
+        id: 10,
+        title: "Moscow, Russia",
+        description: "Мой первый пост",
+        author: 1,
         created_on: new Date(Date.now()),
-        image: "logo512.png"
+        image_src: "logo512.png",
+        author_name: "dsdsa"
     }]
     return (
         <>

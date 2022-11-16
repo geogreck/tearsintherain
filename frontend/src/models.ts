@@ -7,11 +7,13 @@ export interface IUser {
 }
 
 export interface IMoment {
-    header: string
-    content: string
-    author: string
+    id: number
+    title: string
+    description: string
+    author: number
+    author_name: string
     created_on: Date
-    image: string
+    image_src: string
 }
 
 export interface IComment {

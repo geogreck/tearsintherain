@@ -4,7 +4,7 @@ import {IMoment, IUser} from '../models'
 import Comment from "./Comment"
 
 interface PostProps {
-    user: IUser
+    // user: IUser
     moment: IMoment
 }
 
@@ -12,9 +12,9 @@ function Post(props?: PostProps) {
     return (
         <div className="w-75 border border-primary container my-3 shadow p-3 bg-body rounded">
             <div className="row d-inline">
-                <span className="fw-bold border border-secondary rounded mx-3 px-1">{props?.moment.author}</span>
+                <span className="fw-bold border border-secondary rounded mx-3 px-1">{props?.moment.author_name}</span>
                 <br/>
-                <span className="ml-2 px-1"></span>{props?.moment.header}
+                <span className="ml-2 px-1"></span>{props?.moment.title}
             </div>
             <div className="row">
                 <div className="col-3"></div>
@@ -54,7 +54,7 @@ function Post(props?: PostProps) {
                 <span className="fw-bold">1212 likes</span>
             </div>
             <div className="row">
-                <span className="fw-bold">{props?.moment.author} <span className="fw-normal" > {props?.moment.content}</span></span>
+                <span className="fw-bold">{props?.moment.author_name} <span className="fw-normal" > {props?.moment.description}</span></span>
             </div>
             <Comment comment={{author: "user", content: "text", created_on: new Date()}}/>
         </div>

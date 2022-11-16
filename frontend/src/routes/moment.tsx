@@ -28,7 +28,7 @@ export default function Moment() {
                 <span className="fw-bold border border-secondary rounded mx-3 px-1">{moment.author}</span>
                 <br />
                 <span className="ml-2 px-1"></span>
-                {moment.header}
+                {moment.title}
             </div>
             <div className="row">
                 <div className="col-3"></div>
@@ -89,7 +89,7 @@ export default function Moment() {
                 <span className="fw-bold">1212 likes</span>
             </div>
             <div className="row d-inline">
-                <span className="fw-bold">{moment.author}</span> {moment.content}
+                <span className="fw-bold">{moment.author}</span> {moment.description}
             </div>
         </div>
     )

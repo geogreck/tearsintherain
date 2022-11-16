@@ -39,7 +39,7 @@ function EventComp(props: EventProps) {
                         <div className="fw-bold">{props?.like_event?.author}</div>
                         <div className="row">
                             <span className="col-8 d-inline">
-                                Поставил "Нравится" на ваш момент <span className="fw-bold">{props?.like_event?.target.content}</span>
+                                Поставил "Нравится" на ваш момент <span className="fw-bold">{props?.like_event?.target.author}</span>
                                 <span className="fw-light mx-3">1 дн.</span>
                             </span>
                         </div>

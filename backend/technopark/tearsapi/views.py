@@ -9,10 +9,11 @@ from .pagination import StandardResultsSetPagination
 
 
 class MomentSerializer(serializers.ModelSerializer):
+    author_name = serializers.CharField(source='author.id.username', read_only=True)
     class Meta:
         model = Moment
         fields = ['id', 'title', 'description',
-                  'author', 'created_on', 'image_src', 'raiting']
+                  'author', 'created_on', 'image_src', 'raiting', 'author_name']
 
 
 class UserSerializer(serializers.ModelSerializer):

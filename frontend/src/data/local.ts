@@ -10,16 +10,6 @@ export const users: IUser[] =  [
     }
 ]
 
-export const moments: IMoment[] = [
-    {
-        header: "Moscow, Russia",
-        content: "Мой первый пост",
-        author: "geogreck",
-        created_on: new Date(Date.now()),
-        image: "logo512.png"
-    }
-]
-
 export const subbs: ISub[] = [
     {
         author: 'geogreck',

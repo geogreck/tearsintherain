@@ -21,7 +21,7 @@ class MomentsManager(models.Manager):
         return super().get_queryset().order_by('-created_on')
 
     def top_moments(self):
-        return super().get_queryset().order_by('-raiting')
+        return super().get_queryset().order_by('-raiting', 'id')
 
 
 class Moment(models.Model):
@@ -46,7 +46,7 @@ class Subscription(models.Model):
         Profile, related_name="author_id", on_delete=models.CASCADE)
     target = models.ForeignKey(
         Profile, related_name="user_id", on_delete=models.CASCADE)
-    created_on = models.DateTimeField()
+    created_on = models.DateTimeField(auto_now_add=True)
 
 
 class Like(models.Model):

@@ -46,6 +46,11 @@ def fill_db(ratio: int):
     comments = Comment.objects.bulk_create(comments)
     comment_id = Comment.objects.count() - ratio * 100 + 1
 
+    subs = []
+    for i in range(0, ratio * 10):
+        subs.append(Subscription(author_id=i / 100 + 1, target_id=random.randint(user_id, user_id + ratio - 1)))
+    Subscription.objects.bulk_create(subs)
+
     tags = []
     for i in range(0, ratio):
         tags.append(Tag(title=randomword(10)))

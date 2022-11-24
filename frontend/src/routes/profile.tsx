@@ -30,7 +30,8 @@ export default function ProfileRoute() {
         author: 1,
         created_on: new Date(Date.now()),
         image_src: "logo512.png",
-        author_name: "dsdsa"
+        author_name: "dsdsa",
+        raiting: 0
     }]
     return (
         <>

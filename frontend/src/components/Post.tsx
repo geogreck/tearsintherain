@@ -51,7 +51,7 @@ function Post(props?: PostProps) {
                 </svg>
             </div>
             <div className="row">
-                <span className="fw-bold">1212 likes</span>
+                <span className="fw-bold">raiting: {props?.moment.raiting}</span>
             </div>
             <div className="row">
                 <span className="fw-bold">{props?.moment.author_name} <span className="fw-normal" > {props?.moment.description}</span></span>

@@ -18,7 +18,7 @@ services:
     container_name: backend
     restart: always
     tty: true
-    command: "python3 technopark/manage.py runserver 0.0.0.0:8080"
+    command: bash -c "python3 technopark/manage.py migrate && python3 technopark/manage.py fill_db 100 && python3 technopark/manage.py runserver 0.0.0.0:8080"
     ports:
       - 8080:8080
     networks:

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import AddMomentModal from '../components/AddMomentModal'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 
 export default function Root() {
@@ -23,6 +24,7 @@ export default function Root() {
                 <Header page={curPage} openModal={openAddModal} isLogged={isLogged} />
                 <Outlet />
                 <AddMomentModal modalState={{ isOpen: isAddOpen, setIsOpen: setIsAddOpen }} />
+                <Footer />
             </div>
         </>
     )

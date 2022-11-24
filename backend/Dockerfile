@@ -11,5 +11,6 @@ RUN pip install drf-yasg
 RUN apt update
 RUN apt install -y libpq-dev
 RUN pip install psycopg2-binary
+RUN pip install django-cors-headers
 
 COPY . /home/code

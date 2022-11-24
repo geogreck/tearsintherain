@@ -14,6 +14,7 @@ export interface IMoment {
     author_name: string
     created_on: Date
     image_src: string
+    raiting: number
 }
 
 export interface IComment {

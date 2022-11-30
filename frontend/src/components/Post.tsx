@@ -1,7 +1,20 @@
-import React from "react"
+import axios from "axios"
+import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
-import {IMoment, IUser} from '../models'
+import {IMoment, IUser, ITag} from '../models'
 import Comment from "./Comment"
+
+async function getTag(id: number) {
+    const response = await fetch(`http://localhost:8080/api/tags/${id}/moments`)
+    if (response.ok) {
+        return response.json()
+    }
+    const error = await response.json()
+    const e = new Error('Пиво')
+    e.message = error
+    throw e
+}
 
 interface PostProps {
     // user: IUser
@@ -9,12 +22,19 @@ interface PostProps {
 }
 
 function Post(props?: PostProps) {
+    let [tag, setTag] = useState<ITag>()
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/moments/${props?.moment.id}/tags`).then(response => {
+            setTag(response.data[0])
+        })
+    }, [])
+
     return (
         <div className="w-75 border border-primary container my-3 shadow p-3 bg-body rounded">
             <div className="row d-inline">
                 <span className="fw-bold border border-secondary rounded mx-3 px-1">{props?.moment.author_name}</span>
                 <br/>
-                <span className="ml-2 px-1"></span>{props?.moment.title}
+                <span className="ml-2 px-1"></span>{props?.moment.title} <span className={`${tag ? 'bg-info':''} rounded`}>{tag ? tag.title : ''}</span>
             </div>
             <div className="row">
                 <div className="col-3"></div>
@@ -56,7 +76,8 @@ function Post(props?: PostProps) {
             <div className="row">
                 <span className="fw-bold">{props?.moment.author_name} <span className="fw-normal" > {props?.moment.description}</span></span>
             </div>
-            <Comment comment={{author: "user", content: "text", created_on: new Date()}}/>
+            {/* <Comment comment={{author: "user", content: "text", created_on: new Date()}}/> */}
+            <Link className="link-secondary" to={`/moments/${props?.moment.id}`}>Посмотреть комментарии..</Link>
         </div>
     )
 }

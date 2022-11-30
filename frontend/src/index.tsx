@@ -4,7 +4,7 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.js'
 
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Route, redirect } from 'react-router-dom'
 import Root from './routes/root'
 import ErrorPage from './components/ErrorPage'
 import Moment, { loader as momentLoader } from './routes/moment'
@@ -13,6 +13,8 @@ import ProfileRoute, { loader as profileLoader } from './routes/profile'
 import LoginRoute, { action as loginAction } from './routes/login'
 import RegisterRoute, { action as registerAction } from './routes/register'
 import NotificationsRoute from './routes/notifications'
+import FeedReload, { loader as feedReloader } from './routes/feedreload'
+import TagRoute, { loader as tagLoader, action as tagAction } from './routes/tag'
 
 const router = createBrowserRouter([
     {
@@ -24,6 +26,11 @@ const router = createBrowserRouter([
                 path: 'moments/:momentId',
                 element: <Moment />,
                 loader: momentLoader,
+            },
+            {
+                path: '/:filter/reload',
+                element: <FeedReload />,
+                loader: feedReloader,
             },
             {
                 path: '/',
@@ -53,6 +60,16 @@ const router = createBrowserRouter([
                 path: '/login',
                 element: <LoginRoute />,
                 action: loginAction,
+            },
+            {
+                path: '/tag/:tag_id',
+                element: <TagRoute />,
+                loader: tagLoader,
+            },
+            {
+                path: '/tag/',
+                element: <TagRoute />,
+                action: tagAction,
             },
         ],
     },

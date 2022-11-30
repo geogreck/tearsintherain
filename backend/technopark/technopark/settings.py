@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'slavadb',
         'USER': 'slava',
         'PASSWORD': 'slavapswd',
-        'HOST': 'db',
+        'HOST': '0.0.0.0',
         'PORT': '5432',
     }
 }

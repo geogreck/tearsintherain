@@ -1,9 +1,24 @@
+import { useEffect, useState } from 'react'
 import { Form, useLoaderData } from 'react-router-dom'
-import { IMoment } from '../models'
+import { IComment, IMoment } from '../models'
+import Comment from '../components/Comment'
+import axios from 'axios'
 
 function getMoment(moment_id: number) {
-    return fetch(`https://json.grechkogv.ru/moments/${moment_id}`, {
-    }).then((response) => {
+    return fetch(`http://localhost:8080/api/moments/${moment_id}`, {}).then((response) => {
+        if (response.ok) {
+            return response.json()
+        }
+        return response.json().then((error) => {
+            const e = new Error('Пиво')
+            e.message = error
+            throw e
+        })
+    })
+}
+
+function getComments(moment_id: number) {
+    return fetch(`http://localhost:8080/api/moments/${moment_id}/comments`).then((response) => {
         if (response.ok) {
             return response.json()
         }
@@ -16,16 +31,23 @@ function getMoment(moment_id: number) {
 }
 
 export async function loader({ params }: any) {
-    console.log(params.momentId);
+    console.log(params.momentId)
     return getMoment(params.momentId)
 }
 
 export default function Moment() {
     const moment = useLoaderData() as IMoment
+    let [comments, setComments] = useState([] as IComment[])
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/moments/${moment.id}/comments`).then(response => {
+            setComments(response.data)
+        })
+    },[])
+
     return (
         <div className="w-75 border border-primary container my-3 shadow p-3 bg-body rounded">
             <div className="row d-inline">
-                <span className="fw-bold border border-secondary rounded mx-3 px-1">{moment.author}</span>
+                <span className="fw-bold border border-secondary rounded mx-3 px-1">{moment.author_name}</span>
                 <br />
                 <span className="ml-2 px-1"></span>
                 {moment.title}
@@ -86,10 +108,14 @@ export default function Moment() {
                 </svg>
             </div>
             <div className="row">
-                <span className="fw-bold">1212 likes</span>
+                <span className="fw-bold">raiting: {moment.raiting}</span>
             </div>
             <div className="row d-inline">
-                <span className="fw-bold">{moment.author}</span> {moment.description}
+                <span className="fw-bold">{moment.author_name}</span> {moment.description}
+            </div>
+            <hr />
+            <div className="d-block">
+                {comments ? comments.map((comment) => <Comment key={comment.id} comment={comment} />) : ''}
             </div>
         </div>
     )

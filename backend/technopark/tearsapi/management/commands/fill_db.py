@@ -48,27 +48,37 @@ def fill_db(ratio: int):
 
     subs = []
     for i in range(0, ratio * 10):
-        subs.append(Subscription(author_id=i / 100 + 1, target_id=random.randint(user_id, user_id + ratio - 1)))
+        subs.append(Subscription(author_id=i / 100 + 1,
+                    target_id=random.randint(user_id, user_id + ratio - 1)))
     Subscription.objects.bulk_create(subs)
 
     tags = []
     for i in range(0, ratio):
-        tags.append(Tag(title=randomword(10)))
+        tags.append(Tag(title=randomword(10), raiting=random.randint(0, 1000)))
     Tag.objects.bulk_create(tags)
+
+    for i in range(0, ratio):
+        tags[i].moments.add(random.randint(moments_id, moments_id + ratio * 10 / 2),
+                            random.randint(moments_id, ratio * 10 + moments_id - ratio * 10 / 2), )
 
     likes = []
     for i in range(0, ratio * 200):
         target_comment = None
-        target_moment = None
         if random.randint(1, 2) == 2:
             target_moment = random.randint(
                 moments_id, moments_id + ratio * 10 - 1)
         else:
             target_comment = random.randint(
                 comment_id, comment_id + ratio * 100 - 1)
-        likes.append(Like(author_id=random.randint(user_id, user_id + ratio - 1),
-                     target_comment_id=target_comment, target_moment_id=target_moment))
-    Like.objects.bulk_create(likes)
+        likes.append(MomentLike(author_id=random.randint(user_id, user_id + ratio - 1),
+                                target_id=random.randint(moments_id, moments_id + ratio * 10 - 1)))
+    MomentLike.objects.bulk_create(likes)
+
+    likes = []
+    for i in range(0, ratio * 200):
+        likes.append(CommentLike(author_id=random.randint(user_id, user_id + ratio - 1),
+                                 target_id=random.randint(comment_id, comment_id + ratio * 10 - 1)))
+    CommentLike.objects.bulk_create(likes)
 
 
 def randomword(length):

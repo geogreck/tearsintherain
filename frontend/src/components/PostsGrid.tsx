@@ -1,7 +1,13 @@
 import React from 'react'
+import { IMoment } from '../models'
 
-function PostsGrid() {
+interface GridProps {
+    moments: IMoment[]
+}
+
+function PostsGrid(props: GridProps) {
     return (
+        
         <div className=" container my-1 p-1 bg-body">
             <div className="d-flex justify-content-center">
                 <img src="logo512.png" className="col-3 border border-secondary rounded m-2 shadow"></img>

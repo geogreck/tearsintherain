@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Form, Link, NavLink } from 'react-router-dom'
 import '../scss/Header.scss'
 import logo from '../logo.png'
 
@@ -12,6 +12,13 @@ interface HeaderProps {
 function Header(props: HeaderProps) {
     let [isLogged, login] = useState(false)
     let [userId, setUserId] = useState('')
+
+    useEffect(() => {
+        let res = window.sessionStorage.getItem('logged')
+        login(JSON.parse(res!))
+        res = window.sessionStorage.getItem('user_id')
+        setUserId(JSON.parse(res!))
+    }, [])
 
     const interval = setInterval(() => {
         let res = window.sessionStorage.getItem('logged')
@@ -26,7 +33,7 @@ function Header(props: HeaderProps) {
             <div className="container-fluid">
                 <NavLink
                     className={({ isActive }) => (isActive ? 'navbar-brand text-primary ' : 'navbar-brand')}
-                    to="/"
+                    to="/new/reload"
                 >
                     <img src={logo} height="50px" alt="" className="mx-3" />
                 </NavLink>
@@ -137,7 +144,11 @@ function Header(props: HeaderProps) {
                     </Link>
                 ) : (
                     <div className="flex-shrink-0 me-2">
-                        <Link to={`/profile/${userId}`} className="d-block link-dark text-decoration-none" aria-expanded="false">
+                        <Link
+                            to={`/profile/${userId}`}
+                            className="d-block link-dark text-decoration-none"
+                            aria-expanded="false"
+                        >
                             <img
                                 src="https://github.com/mdo.png"
                                 alt="mdo"
@@ -148,12 +159,19 @@ function Header(props: HeaderProps) {
                         </Link>
                     </div>
                 )}
-                <form className="d-flex">
-                    <input className="form-control mx-2" type="search" placeholder="Search" aria-label="Search" />
+                <Form action="/tag/" method="post" className="d-flex">
+                    <input
+                        className="form-control mx-2"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        name='tagName'
+                        required
+                    />
                     <button className="btn btn-outline-primary" type="submit">
                         Search
                     </button>
-                </form>
+                </Form>
             </div>
         </nav>
     )

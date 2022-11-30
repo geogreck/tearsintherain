@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { IMoment, IUser } from '../models'
+import Post from './Post'
 import PostsGrid from './PostsGrid'
 import SettingsModal from './SettingsModal'
 
 interface ProfileProps {
     user: IUser
-    moments: IMoment[]
 }
 
 function Profile(props: ProfileProps) {
@@ -13,6 +14,13 @@ function Profile(props: ProfileProps) {
     function openSettingsModal() {
         setIsSettingsOpen(true)
     }
+    const [moments, addMoments] = useState<IMoment[]>([])
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/users/${props.user.id}/moments`).then(response => {
+            addMoments(moments.concat(response.data))
+        })
+    }, [])
 
     return (
         <div>
@@ -68,12 +76,14 @@ function Profile(props: ProfileProps) {
                 </div>
                 <div className="row d-inline">
                     <span className="fw-bold">Рейтинг:</span>
-                    {props?.user.rating}
                     <span className="fw-bold">Дата регистрации</span> {props?.user.registration_date.toDateString()}
                 </div>
             </div>
             {/*  <div className=" border border-primary container my-1 shadow p-1 bg-body rounded"> */}
-            <PostsGrid />
+
+            {moments.map(moment => (
+                <Post moment={moment} />
+            ))}
 
             <SettingsModal modalState={{ isOpen: isSettingsOpen, setIsOpen: setIsSettingsOpen }} />
         </div>

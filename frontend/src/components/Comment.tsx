@@ -7,8 +7,8 @@ interface CommentProps {
 export default function Comment(props: CommentProps) {
     return (
         <>
-        <div className="row d-inline">
-                <span className="fw-bold">{props?.comment.author} <span className="fw-normal" > {props?.comment.content}</span></span>
+        <div className="row">
+                <span className="fw-bold">{props?.comment.author_name} <span className="fw-normal mx-2 my-3" > {props?.comment.text}</span></span>
             </div>
         </>
     )

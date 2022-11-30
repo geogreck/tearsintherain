@@ -31,7 +31,6 @@ export default function FeedRoute() {
     const res = useLoaderData() as any
     let [moments, addMoments] = useState(res.results as IMoment[])
     let [link, setLink] = useState({ next: res.next as string } as link)
-    if (moments) console.log(link.next)
 
     let loadMore = async () => {
         let result = await fetch(link.next)
@@ -48,18 +47,26 @@ export default function FeedRoute() {
             .then((result) => {
                 return result
             })
-        console.log({next:result.next})
-        setLink({next:result.next})
-        console.log(link)
+        setLink({ next: result.next })
         let new_data: IMoment[] = result.results
         addMoments(moments.concat(new_data))
     }
     return (
-        <>
+        <main>
             <Feed moments={moments} />
-            <button className="btn btn-primary fs-strong w-50 col-sm-4  mx-auto mb-5 " onClick={() => loadMore()}>
-                Загрузить ещё
-            </button>
-        </>
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-10 ">
+                        
+                        <button
+                            className="btn btn-primary container fs-strong w-50 ms-5 mb-5 "
+                            onClick={() => loadMore()}
+                        >
+                            Загрузить ещё
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
     )
 }
